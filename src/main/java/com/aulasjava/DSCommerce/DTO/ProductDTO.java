@@ -2,10 +2,18 @@ package com.aulasjava.DSCommerce.DTO;
 
 import com.aulasjava.DSCommerce.entities.Product;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 public class ProductDTO {
 	private Long id;
+	@Size(min = 3, max = 80, message = "Deve ter entre 3 e 80 caracteres!")
 	private String name;
+	@Size(min = 10, message = "Deve ter no mínimo 10 caracteres!")
 	private String description;
+	@NotNull
+	@Positive
 	private Double price;
 	private String imgUrl;
 
