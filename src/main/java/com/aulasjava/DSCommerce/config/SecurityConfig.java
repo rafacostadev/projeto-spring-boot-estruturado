@@ -11,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+
 	@Bean
 	@Order(2)
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -18,15 +19,14 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 		return http.build();
 	}
-	
 
 	@Bean
 	@Profile("test")
 	@Order(1)
 	public SecurityFilterChain h2SecurityFilterChain(HttpSecurity http) throws Exception {
-
 		http.securityMatcher(PathRequest.toH2Console()).csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
 		return http.build();
 	}
+
 }
