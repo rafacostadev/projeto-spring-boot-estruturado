@@ -5,7 +5,6 @@ public class FieldError {
 	String message;
 
 	public FieldError(String fieldName, String message) {
-		super();
 		this.fieldName = fieldName;
 		this.message = message;
 	}

@@ -51,10 +51,6 @@ public class Order {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Instant getMoment() {
 		return moment;
 	}
@@ -75,12 +71,28 @@ public class Order {
 		return client;
 	}
 
+	public void setClient(User client) {
+		this.client = client;
+	}
+
 	public Payment getPayment() {
 		return payment;
 	}
 
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public void setItems(Set<OrderItem> items) {
+		this.items = items;
+	}
+
 	public Set<OrderItem> getItems() {
 		return items;
+	}
+
+	public void addItems(OrderItem orderItem) {
+		items.add(orderItem);
 	}
 
 	public List<Product> getProducts() {
