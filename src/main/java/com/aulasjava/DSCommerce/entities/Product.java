@@ -85,6 +85,10 @@ public class Product {
 		this.imgUrl = imgUrl;
 	}
 
+	public void addCategory(Category category) {
+		categories.add(category);
+	}
+
 	public Set<Category> getCategories() {
 		return categories;
 	}

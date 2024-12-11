@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.aulasjava.DSCommerce.DTO.ProductDTO;
+import com.aulasjava.DSCommerce.DTO.ProductMinDTO;
 import com.aulasjava.DSCommerce.services.ProductService;
 
 import jakarta.validation.Valid;
@@ -29,8 +31,9 @@ public class ProductController {
 	private ProductService service;
 
 	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
-		return ResponseEntity.ok(service.findAll(pageable));
+	public ResponseEntity<Page<ProductMinDTO>> findAll(Pageable pageable,
+			@RequestParam(defaultValue = "") String name) {
+		return ResponseEntity.ok(service.findAll(name, pageable));
 	}
 
 	@GetMapping("/{id}")
@@ -44,7 +47,7 @@ public class ProductController {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
-	}	
+	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/{id}")
